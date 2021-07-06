@@ -1,8 +1,11 @@
 import React from 'react';
+import './pokeinfo.css';
+import { Link } from 'react-router-dom';
 
 class Pokeinfo extends React.Component {
-  constructor({ pokemons }){
-    super(pokemons)
+  constructor(props){
+    super(props)
+
     this.state = {
       poke: '',
     }
@@ -26,10 +29,19 @@ class Pokeinfo extends React.Component {
     const { poke } = this.state;
     return(
       <div>
-        <p>{ poke.name }</p>
-        <h5>{ poke.type }</h5>
-        <img src={poke ? poke.image : "Where is that she*"} alt="salve" />
-        <img src={ poke ? poke.foundAt[0].map : "cadê?" } alt="salve2" />
+        <div className="info-div">
+          <div>
+            <p>{ poke.name }</p>
+            <p>{ poke.type }</p>
+            <p>
+              Weight: { poke ? poke.averageWeight.value : "Aguarde..."} 
+              { poke ? poke.averageWeight.measurementUnit : "Aguarde..."}
+            </p>
+            <Link to="/"><span>Back home</span></Link>
+          </div>
+          <img className="poke-img" src={poke ? poke.image : "Sem pokemons por enquanto!"} alt="Imagem do pokemon" />
+        </div>
+        <img src={poke ? poke.foundAt[0].map : "Aguarde..."} alt="salve2" />
       </div>
     );
   }
