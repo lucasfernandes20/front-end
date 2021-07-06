@@ -2,7 +2,8 @@ import React from 'react';
 import './App.css';
 import pokemons from './data';
 import Pokedex from './Pokedex';
-import { BrowserRouter, Router } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import Pokeinfo from './Pokeinfo';
 
 class App extends React.Component {
   render() {
@@ -10,9 +11,8 @@ class App extends React.Component {
       <div className="App">
         <h1> Pokedex </h1>
         <BrowserRouter>
-          <Router path="/">
-            <Pokedex />
-          </Router>
+          <Route exact path="/" render={(props) => <Pokedex {...props} pokemons={ pokemons } />} />
+          <Route path="/pokemons/:id" render={(props) => <Pokeinfo { ...props } pokemons={ pokemons } />} />
         </BrowserRouter>
       </div>
     );
